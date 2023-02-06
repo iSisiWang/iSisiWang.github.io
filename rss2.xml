@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Argvchs の小窝</title>
+    <link>https://isisi.eu.org/</link>
+    
+    <atom:link href="https://isisi.eu.org/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description></description>
+    <pubDate>Mon, 06 Feb 2023 01:08:57 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>禁用年度月度归档</title>
+      <link>https://isisi.eu.org/2023/01/05/disable-yearly-monthly-archive/</link>
+      <guid>https://isisi.eu.org/2023/01/05/disable-yearly-monthly-archive/</guid>
+      <pubDate>Thu, 05 Jan 2023 17:53:55 GMT</pubDate>
+      
+      <description>&lt;p&gt;Hexo 会自动生成年度月度归档，可是 ParticleX 主题没有这个功能 &lt;s&gt;我太懒了&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;所以我们就要禁用！&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/other/">其他</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/hexo/">Hexo</category>
+      
+      
+      <comments>https://isisi.eu.org/2023/01/05/disable-yearly-monthly-archive/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>搭建 CDN</title>
+      <link>https://isisi.eu.org/2023/01/05/build-cdn/</link>
+      <guid>https://isisi.eu.org/2023/01/05/build-cdn/</guid>
+      <pubDate>Thu, 05 Jan 2023 15:31:20 GMT</pubDate>
+      
+      <description>&lt;p&gt;用 GitHub Actions + Netlify 搭建一个 CDN，和 &lt;a href=&quot;https://cdnjs.com&quot;&gt;CDNJS&lt;/a&gt; 自动同步&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tutorial/">教程</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/cdn/">CDN</category>
+      
+      <category domain="https://isisi.eu.org/tags/github/">GitHub</category>
+      
+      <category domain="https://isisi.eu.org/tags/netlify/">Netlify</category>
+      
+      
+      <comments>https://isisi.eu.org/2023/01/05/build-cdn/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hexo-Babel</title>
+      <link>https://isisi.eu.org/2022/12/13/hexo-babel/</link>
+      <guid>https://isisi.eu.org/2022/12/13/hexo-babel/</guid>
+      <pubDate>Tue, 13 Dec 2022 15:51:22 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;a href=&quot;https://github.com/argvchs/hexo-babel&quot;&gt;Hexo-Babel&lt;/a&gt; 插件，使用 Babel 编译转换 JS 文件&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tool/">工具</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/hexo/">Hexo</category>
+      
+      <category domain="https://isisi.eu.org/tags/plugin/">插件</category>
+      
+      <category domain="https://isisi.eu.org/tags/babel/">Babel</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/13/hexo-babel/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hexo 自动处理 CSS 兼容性</title>
+      <link>https://isisi.eu.org/2022/12/12/css-compatibility/</link>
+      <guid>https://isisi.eu.org/2022/12/12/css-compatibility/</guid>
+      <pubDate>Mon, 12 Dec 2022 14:22:40 GMT</pubDate>
+      
+      <description>&lt;p&gt;CSS 兼容性太麻烦了，所以要自动处理&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tool/">工具</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/hexo/">Hexo</category>
+      
+      <category domain="https://isisi.eu.org/tags/css/">CSS</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/12/css-compatibility/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hexo-Helper-Crypto</title>
+      <link>https://isisi.eu.org/2022/12/08/hexo-helper-crypto/</link>
+      <guid>https://isisi.eu.org/2022/12/08/hexo-helper-crypto/</guid>
+      <pubDate>Thu, 08 Dec 2022 16:26:33 GMT</pubDate>
+      
+      <description>[Hexo-Helper-Crypto](https://github.com/argvchs/hexo-helper-crypto) 插件，用于在模板文件内加/解密数据，使用 [Crypto-js](https://github.com/brix/crypto-js)
+
+密码是 `123456`
+</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tool/">工具</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/hexo/">Hexo</category>
+      
+      <category domain="https://isisi.eu.org/tags/plugin/">插件</category>
+      
+      <category domain="https://isisi.eu.org/tags/crypto-js/">Crypto-js</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/08/hexo-helper-crypto/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>GitHub 打不开终极办法</title>
+      <link>https://isisi.eu.org/2022/12/07/fix-github/</link>
+      <guid>https://isisi.eu.org/2022/12/07/fix-github/</guid>
+      <pubDate>Wed, 07 Dec 2022 09:33:01 GMT</pubDate>
+      
+      <description>&lt;p&gt;这几天 GitHub 几乎都是无法打开，改 Hosts 也不行，只能用龟速的 Tor&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/other/">其他</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/github/">GitHub</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/07/fix-github/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Giscus</title>
+      <link>https://isisi.eu.org/2022/12/06/giscus/</link>
+      <guid>https://isisi.eu.org/2022/12/06/giscus/</guid>
+      <pubDate>Tue, 06 Dec 2022 18:35:05 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;Giscus 终于配置好了！&lt;/strong&gt;&lt;br&gt;
+必须要纪念一下&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/other/">其他</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/giscus/">Giscus</category>
+      
+      <category domain="https://isisi.eu.org/tags/comment/">评论</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/06/giscus/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Scenexe.io Tank Codes</title>
+      <link>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/</link>
+      <guid>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/</guid>
+      <pubDate>Sun, 04 Dec 2022 23:27:21 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://test.scenexe.io&quot;&gt;Scenexe.io Test Server&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+自己做的 &lt;a href=&quot;http://Arras.io&quot;&gt;Arras.io&lt;/a&gt; Bosses 的 Tank Code，按 &lt;a href=&quot;https://diepio.fandom.com/wiki/Arras:Bosses&quot;&gt;Fandom&lt;/a&gt; 原页面顺序排列&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/other/">其他</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/scenexe-io/">Scenexe.io</category>
+      
+      <category domain="https://isisi.eu.org/tags/arras-io/">Arras.io</category>
+      
+      <category domain="https://isisi.eu.org/tags/io-game/">IO Game</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>搭建图床</title>
+      <link>https://isisi.eu.org/2022/11/18/image-hosting/</link>
+      <guid>https://isisi.eu.org/2022/11/18/image-hosting/</guid>
+      <pubDate>Fri, 18 Nov 2022 16:06:43 GMT</pubDate>
+      
+      <description>&lt;p&gt;之前图床用的是 &lt;a href=&quot;https://www.imgtp.com&quot;&gt;ImgTP&lt;/a&gt;，因为能传 SVG，当初就选了这个，但现在总是间歇性的打不开了&lt;/p&gt;
+&lt;p&gt;还是自建图床吧&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tutorial/">教程</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/netlify/">Netlify</category>
+      
+      <category domain="https://isisi.eu.org/tags/image-hosting/">图床</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/11/18/image-hosting/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MSYS2 安装 Clang</title>
+      <link>https://isisi.eu.org/2022/09/10/msys2-install-clang/</link>
+      <guid>https://isisi.eu.org/2022/09/10/msys2-install-clang/</guid>
+      <pubDate>Sat, 10 Sep 2022 12:22:17 GMT</pubDate>
+      
+      <description>&lt;p&gt;使用 MSYS2 安装 Clang 的教程&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://isisi.eu.org/categories/tool/">工具</category>
+      
+      
+      <category domain="https://isisi.eu.org/tags/c-cpp/">C/C++</category>
+      
+      <category domain="https://isisi.eu.org/tags/gcc/">GCC</category>
+      
+      <category domain="https://isisi.eu.org/tags/msys2/">MSYS2</category>
+      
+      <category domain="https://isisi.eu.org/tags/clang/">Clang</category>
+      
+      
+      <comments>https://isisi.eu.org/2022/09/10/msys2-install-clang/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

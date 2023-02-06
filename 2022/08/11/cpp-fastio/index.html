@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><title>C++ Fast-IO | Argvchs の小窝</title><meta name="author" content="Argvchs"><meta name="description" content=""><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><link rel="icon" href="https://static-argvchs.netlify.app/images/avatar.jpg"><script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script><script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script><script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css"><link rel="stylesheet" href="/css/fonts.min.css"><link rel="stylesheet" href="/css/particlex.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Argvchs の小窝" type="application/atom+xml"><link rel="alternate" href="/rss2.xml" title="Argvchs の小窝" type="application/rss+xml"></head><body><div id="loading" style="height:100vh;width:100vw;left:0;top:0;position:fixed;display:flex;z-index:2147483647;background:#fff;transition:opacity .3s ease-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none"><div style="width:50vmin;height:50vmin;margin:auto;padding:50px;border-radius:50%;display:flex;border:solid 10px #a3ddfb"><div style="margin:auto;text-align:center"><h2>LOADING</h2><p>加载过慢请开启缓存，浏览器默认开启</p><img src="/images/loading.gif" style="height:50px;border-radius:0"></div></div></div><div id="layout"><transition name="into"><div id="main" v-show="showpage" style="display:-not-none"><nav id="menu"><div class="desktop-menu"><a class="title" href="/"><span>ARGVCHS の小窝</span> </a><a href="/"><i class="fa-solid fa-house fa-fw"></i> <span>&ensp;Home</span> </a><a href="/about"><i class="fa-solid fa-id-card fa-fw"></i> <span>&ensp;About</span> </a><a href="/archives"><i class="fa-solid fa-box-archive fa-fw"></i> <span>&ensp;Archives</span> </a><a href="/categories"><i class="fa-solid fa-bookmark fa-fw"></i> <span>&ensp;Categories</span> </a><a href="/tags"><i class="fa-solid fa-tags fa-fw"></i> <span>&ensp;Tags</span></a></div><div :class="&quot;phone-menu &quot; + menushow" id="phone-menu"><div class="curtain" @click="menushow = !menushow" v-show="menushow"></div><div class="title" @click="menushow = !menushow"><i class="fa-solid fa-bars fa-fw"></i> <span>&emsp;ARGVCHS の小窝</span></div><transition name="slide"><div class="items" v-show="menushow"><a href="/"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-house fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Home</div></div></a><a href="/about"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-id-card fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">About</div></div></a><a href="/archives"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-box-archive fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Archives</div></div></a><a href="/categories"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-bookmark fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Categories</div></div></a><a href="/tags"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-tags fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Tags</div></div></a></div></transition></div></nav><div class="article"><div><h1>C++ Fast-IO</h1></div><div class="info"><span class="date"><span class="icon"><i class="fa-solid fa-calendar fa-fw"></i> </span>2022/8/11 </span><span class="category"><a href="/categories/algorithm/"><span class="icon"><i class="fa-solid fa-bookmark fa-fw"></i> </span>算法 </a></span><span class="tags"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i> </span><span class="tag"><a href="/tags/c-cpp/" style="color:#ffa2c4">C/C++</a> </span><span class="tag"><a href="/tags/cpp20/" style="color:#00a596">C++20</a> </span><span class="tag"><a href="/tags/fast-io/" style="color:#03a9f4">Fast-IO</a></span></span></div><div class="content" v-pre><p>写了一个 <a target="_blank" rel="noopener" href="https://github.com/argvchs/fast-io">Fast-IO</a> 快读/快写库</p><p>支持基本类型与 <code>__int128_t</code> 读写，指针地址写入，和 <code>cin/cout</code> 用法类似</p><span id="more"></span><p>虽然相对于原版函数式 <code>fread</code> 快读会有点慢，但还是比 <code>getchar/putchar</code> 要快的</p><p>Fast-IO 用了 C++20 Concepts，用以下编译参数即可</p><pre><code class="language-bash">g++ &lt;file&gt;.cpp -o &lt;file&gt; -std=c++20 -Wall -O2 -O3 -Ofast
+</code></pre><h2 id="目录解释">目录解释</h2><pre><code>fastio.cpp         # 测试文件
+fastio.h           # Fast-IO 库源文件
+fastio.in          # 输入测试文件
+fastio.speed.in    # 速度测试文件
+README.md          # README
+</code></pre><h2 id="使用">使用</h2><ul><li><p><code>using namespace fastio;</code></p><p>使用 Fast-IO</p></li><li><p><code>using namespace fastio::syms;</code></p><p>使用输入输出符号，如 <code>endl</code></p></li><li><p><code>rs &gt;&gt; x;</code></p><p>读取 x</p></li><li><p><code>rs &gt;&gt; x &gt;&gt; y &gt;&gt; z;</code></p><p>读取 x, y, z</p></li><li><p><code>c = rs.get();</code></p><p>读取一个字符到 c</p></li><li><p><code>rs.read(x, y, z);</code></p><p>读取 x, y, z</p></li><li><p><code>x = rs.read&lt;int&gt;();</code></p><p>读取一个 <code>int</code> 类型的数据到 x</p></li><li><p><code>x = rs.read&lt;T&gt;();</code></p><p>读取一个 <code>T</code> 类型的数据到 x</p></li><li><p><code>x = rs.read&lt;char*&gt;(n);</code> <code>x = rs.read&lt;const char*&gt;(n);</code></p><p>读取一个最长为 n 的字符串到 s，<strong>s 只能为字符指针，不能为数组</strong></p></li><li><p><code>rs &gt;&gt; s;</code></p><p>读取一个字符串 s，<strong>s 只能为字符数组，不能为指针</strong></p></li><li><p><code>rs.getline(s, n);</code></p><p>读取一行到 s，最多读取 n 个字符</p></li><li><p><code>rs.getline(s, n, c);</code></p><p>读取字符到 s，最多读取 n 个字符，一直读到 c 停止</p></li><li><p><code>rs.ignore();</code></p><p>忽略一行</p></li><li><p><code>rs.ignore(n);</code></p><p>忽略一行，最多忽略 n 个字符（若 n 为 $2147483647$ 则等于 <code>rs.ignore();</code>）</p></li><li><p><code>rs.ignore(n, c);</code></p><p>忽略字符到 c 停止，最多忽略 n 个字符</p></li><li><p><code>rs.seek();</code></p><p>移动读取指针到开始</p></li><li><p><code>rs.eof;</code></p><p>rs 是否读到末尾</p></li><li><p><code>rs.fail;</code></p><p>rs 是否发生错误（读到末尾后，继续读取）</p></li><li><p><code>!rs;</code> <code>(bool)rs;</code></p><p>分别等于 <code>rs.fail;</code> <code>!rs.fail;</code></p></li><li><p><code>while (rs &gt;&gt; ...);</code></p><p>一直读取直到末尾</p></li><li><p><code>rs &gt;&gt; bin;</code> <code>rs &gt;&gt; oct;</code> <code>rs &gt;&gt; dec;</code> <code>rs &gt;&gt; hex;</code></p><p>按 2 8 10 16 进制读取整数</p></li><li><p><code>rs &gt;&gt; skipws;</code></p><p>忽略前导空格</p></li><li><p><code>rs.setbase(base);</code></p><p>按 base 进制读取整数，超出范围默认 10 进制 $(2 \le base \le 36)$</p></li><li><p><code>rs &gt;&gt; reset;</code></p><p>取消前面的所有设置</p></li><li><p><code>ws &lt;&lt; x;</code></p><p>写入 x</p></li><li><p><code>ws &lt;&lt; x &lt;&lt; y &lt;&lt; z;</code></p><p>写入 x, y, z</p></li><li><p><code>ws.put(c);</code></p><p>写入一个字符 c</p></li><li><p><code>ws.write(x, y, z);</code></p><p>写入 x, y, z</p></li><li><p><code>ws.flush();</code> 或 <code>ws &lt;&lt; flush;</code></p><p>刷新流</p></li><li><p><code>ws &lt;&lt; endl;</code></p><p>写入换行</p></li><li><p><code>ws &lt;&lt; ends;</code></p><p>写入空格</p></li><li><p><code>ws &lt;&lt; boolalpha;</code></p><p>设置写入 <code>bool</code> 时用 <code>true/false</code></p></li><li><p><code>ws &lt;&lt; noboolalpha;</code></p><p>设置写入 <code>bool</code> 时用 <code>0/1</code></p></li><li><p><code>ws &lt;&lt; showpos;</code></p><p>设置写入非负数（不包括 <code>bool</code>）时前面加 <code>+</code> 号</p></li><li><p><code>ws &lt;&lt; noshowpos;</code></p><p>设置写入非负数（不包括 <code>bool</code>）时前面不加 <code>+</code> 号</p></li><li><p><code>ws &lt;&lt; showpoint;</code></p><p>设置写入浮点数时严格保留 <code>setprecision</code> 时设置的位数</p></li><li><p><code>ws &lt;&lt; noshowpoint;</code></p><p>设置写入浮点数时不严格保留 <code>setprecision</code> 时设置的位数</p></li><li><p><code>ws &lt;&lt; bin;</code> <code>ws &lt;&lt; oct;</code> <code>ws &lt;&lt; dec;</code> <code>ws &lt;&lt; hex;</code></p><p>按 2/8/10/16 进制写入整数</p></li><li><p><code>ws &lt;&lt; lowercase;</code></p><p>按大于 10 的进制写入整数时，字母大写（默认小写）</p></li><li><p><code>ws &lt;&lt; uppercase;</code></p><p>按大于 10 的进制写入整数时，字母小写（默认小写）</p></li><li><p><code>ws &lt;&lt; showbase;</code></p><p>写入 8/16 进制的整数时，在前面显示 <code>0</code>/<code>0x</code></p></li><li><p><code>ws &lt;&lt; noshowbase;</code></p><p>写入 8/16 进制的整数时，不在前面显示 <code>0</code>/<code>0x</code></p></li><li><p><code>ws &lt;&lt; setbase(base);</code></p><p>按 base 进制写入整数，超出范围默认 10 进制 $(2 \le base \le 36)$</p></li><li><p><code>ws &lt;&lt; unitbuf;</code></p><p>设置每写入一个数据就刷新流</p></li><li><p><code>ws &lt;&lt; nounitbuf;</code></p><p>设置超过最大限制 SIZ 时才刷新流（SIZ 为一个 <code>const</code> 变量）</p></li><li><p><code>ws &lt;&lt; setw(width);</code></p><p>设置下一次写入宽度若小于 <code>width</code>，就填补字符（下一次写入重置）</p></li><li><p><code>ws &lt;&lt; setfill(c);</code></p><p>设置 <code>setw</code> 填补的字符，默认为空格</p></li><li><p><code>ws &lt;&lt; setprecision(precision);</code></p><p>设置浮点数保留位数，默认保留 3 位</p></li><li><p><code>ws &lt;&lt; reset;</code></p><p>取消前面的所有设置</p></li><li><p><code>rstream rs;</code></p><p>创建读流（已经有默认流 rs 了，会发生错误）</p></li><li><p><code>wstream ws;</code></p><p>创建写流（已经有默认流 ws 了，会发生错误）</p></li><li><p><code>rfstream rfs(dir);</code></p><p>创建文件读流，从 dir 路径文件读取（也可以是 <code>FILE*</code> 文件指针），和普通读流用法相同</p></li><li><p><code>wfstream wfs(dir);</code></p><p>创建文件写流，写入 dir 路径的文件（也可以是 <code>FILE*</code> 文件指针），和普通写流用法相同</p></li><li><p><code>sstream ss;</code></p><p>创建字符串流，可读写，读取后不会删除数据，会移动读取指针</p></li><li><p><code>ss.str();</code></p><p>获取字符串流的数据</p></li><li><p><code>ss.str(s);</code></p><p>将字符串流的数据替换为 s 并移动读取指针到开始</p></li></ul><h2 id="接口">接口</h2><ul><li><p>重载运算符</p><p><strong>注意要用 <code>fastio::interface::rstream</code> <code>fastio::interface::wstream</code> 来重载</strong></p><p>以下是一些示例程序</p><pre><code class="language-cpp">// overload std::string read/write
+auto &amp;operator&lt;&lt;(fastio::interface::rstream &amp;rs, string &amp;s) &#123;
+    static char buf[1005];
+    return rs &gt;&gt; buf, s = buf, rs;
+&#125;
+auto &amp;operator&lt;&lt;(fastio::interface::wstream &amp;ws, const string s) &#123; return ws &lt;&lt; s.c_str(); &#125;
+
+// overload (,) (;) (.) (?) (!) write
+enum punctuation &#123; comma, simicolon, fullstop, question, exclamatory &#125;;
+auto &amp;operator&lt;&lt;(fastio::interface::wstream&amp; ws, const punctuation s) &#123;
+    if (s == comma) ws.put(',');
+    else if (s == simicolon) ws.put(';');
+    else if (s == fullstop) ws.put('.');
+    else if (s == question) ws.put('?');
+    else if (s == exclamatory) ws.put('!');
+    return rs;
+&#125;
+
+// overload std::vector&lt;T&gt; read/write
+template&lt;class T&gt; auto&amp; operator&lt;&lt;(fastio::interface::rstream&amp; rs, const vector&lt;T&gt;&amp; v) &#123;
+    v.clear();
+    size_t n = rs.read&lt;size_t&gt;();
+    for (T x; n--;) &#123;
+        rs &gt;&gt; x;
+        v.push_back(x);
+    &#125;
+    return ws;
+&#125;
+template&lt;class T&gt; auto&amp; operator&lt;&lt;(fastio::interface::wstream&amp; ws, const vector&lt;T&gt; v) &#123;
+    for (auto p = v.begin(); p != v.end(); ++p) &#123;
+        ws &lt;&lt; *p;
+        if (p != v.end() - 1) ws.put(',');
+    &#125;
+    return ws;
+&#125;
+</code></pre></li></ul><h2 id="Code">Code</h2><pre><code class="language-cpp">#include &lt;cctype&gt;
+#include &lt;climits&gt;
+#include &lt;cmath&gt;
+#include &lt;concepts&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#define SIZ 0xfffff
+namespace fastio &#123;
+namespace syms &#123;
+enum symbol &#123;
+    endl,
+    ends,
+    flush,
+    skipws,
+    boolalpha,
+    noboolalpha,
+    showpos,
+    noshowpos,
+    showpoint,
+    noshowpoint,
+    showbase,
+    noshowbase,
+    bin,
+    oct,
+    dec,
+    hex,
+    uppercase,
+    lowercase,
+    unitbuf,
+    nounitbuf,
+    reset
+&#125;;
+// clang-format off
+struct setw &#123; int data; &#125;;
+struct setfill &#123; char data; &#125;;
+struct setprecision &#123; int data; &#125;;
+struct setbase &#123; int data; &#125;;
+// clang-format on
+&#125;  // namespace syms
+namespace interface &#123;
+using namespace syms;
+template &lt;typename T&gt;
+concept integer_t = std::integral&lt;T&gt; || std::same_as&lt;T, __int128_t&gt; || std::same_as&lt;T, __uint128_t&gt;;
+template &lt;typename T&gt;
+concept signed_integer_t = std::signed_integral&lt;T&gt; || std::same_as&lt;T, __int128_t&gt;;
+template &lt;typename T&gt;
+concept float_t = std::floating_point&lt;T&gt;;
+template &lt;typename T&gt;
+concept string_t = std::same_as&lt;T, char*&gt; || std::same_as&lt;T, const char*&gt;;
+template &lt;typename T&gt;
+concept notstring_t = (!string_t&lt;T&gt;);
+class noncopyable &#123;
+  private:
+    noncopyable(const noncopyable&amp;) = delete;
+    void operator=(const noncopyable&amp;) = delete;
+
+  protected:
+    noncopyable() = default;
+    ~noncopyable() = default;
+&#125;;
+class rstream : public noncopyable &#123;
+    int base = 10;
+    bool pre;
+    char prech;
+    bool isnum(char ch) &#123;
+        return (isdigit(ch) &amp;&amp; ch &lt; '0' + base) || (isupper(ch) &amp;&amp; ch &lt; 'A' - 10 + base) ||
+               (islower(ch) &amp;&amp; ch &lt; 'a' - 10 + base);
+    &#125;
+    bool iseof(char ch) &#123; return !~ch; &#125;
+    int tonum(char ch) &#123; return ch - (isdigit(ch) ? '0' : isupper(ch) ? 'A' - 10 : 'a' - 10); &#125;
+    void reads(char* s, int N) &#123;
+        int t = 0;
+        char ch;
+        while (!iseof(ch = get()) &amp;&amp; isspace(ch))
+            ;
+        if (eof) return (void)(fail = 1);
+        while (isgraph(ch)) &#123;
+            if (t &lt; N - 1) s[t++] = ch;
+            ch = get();
+        &#125;
+        s[t] = '\0', pre = 1;
+    &#125;
+
+  protected:
+    virtual char vget() = 0;
+    virtual void vseek() = 0;
+
+  public:
+    bool eof = 0, fail = 0;
+    rstream() = default;
+    char get() &#123;
+        if (pre) pre = 0;
+        else prech = vget();
+        if (iseof(prech)) eof = 1;
+        return prech;
+    &#125;
+    operator bool() &#123; return !fail; &#125;
+    template &lt;integer_t T&gt; rstream&amp; operator&gt;&gt;(T&amp; x) &#123;
+        x = 0;
+        bool t = 0, f = signed_integer_t&lt;T&gt;;
+        char ch;
+        while (!iseof(ch = get()) &amp;&amp; !isnum(ch))
+            if (f &amp;&amp; isgraph(ch)) t = ch == '-';
+        if (eof) return fail = 1, *this;
+        while (isnum(ch)) x = x * base + tonum(ch), ch = get();
+        if (t) x = -x;
+        pre = 1;
+        return *this;
+    &#125;
+    rstream&amp; operator&gt;&gt;(float_t auto&amp; x) &#123;
+        x = 0;
+        bool t = 0;
+        long double k = 1;
+        char ch;
+        while (!iseof(ch = get()) &amp;&amp; !isdigit(ch))
+            if (isgraph(ch)) t = ch == '-';
+        if (eof) return fail = 1, *this;
+        while (isdigit(ch)) x = x * 10 + ch - '0', ch = get();
+        if (ch == '.')
+            while (isdigit(ch = get())) x += (double)(ch - '0') / (k *= 10);
+        if (t) x = -x;
+        pre = 1;
+        return *this;
+    &#125;
+    rstream&amp; operator&gt;&gt;(char&amp; ch) &#123;
+        while (!iseof(ch = get()) &amp;&amp; isspace(ch))
+            ;
+        if (eof) fail = 1, ch = 0;
+        return *this;
+    &#125;
+    template &lt;int N&gt; rstream&amp; operator&gt;&gt;(char (&amp;s)[N]) &#123;
+        reads(s, N);
+        return *this;
+    &#125;
+    rstream&amp; operator&gt;&gt;(bool&amp; f) &#123;
+        long long x;
+        *this &gt;&gt; x, f = x;
+        return *this;
+    &#125;
+    rstream&amp; operator&gt;&gt;(const symbol s) &#123;
+        if (s == bin) base = 2;
+        else if (s == oct) base = 8;
+        else if (s == dec || s == reset) base = 10;
+        else if (s == hex) base = 16;
+        else if (s == skipws) *this &gt;&gt; *new char, pre = 1;
+        return *this;
+    &#125;
+    rstream&amp; operator&gt;&gt;(const setbase sp) &#123;
+        base = sp.data;
+        if (base &lt; 2 || base &gt; 36) base = 10;
+        return *this;
+    &#125;
+    rstream&amp; ignore(int N = INT_MAX, char delim = '\n') &#123;
+        char ch;
+        if (N == INT_MAX)
+            while (!iseof(ch = get()) &amp;&amp; ch != delim)
+                ;
+        else
+            while (N-- &amp;&amp; !iseof(ch = get()) &amp;&amp; ch != delim)
+                ;
+        if (eof) return fail = 1, *this;
+        return *this;
+    &#125;
+    rstream&amp; getline(char* s, int N, char delim = '\n') &#123;
+        int t = 0;
+        char ch;
+        while (N-- &amp;&amp; !iseof(ch = get()) &amp;&amp; ch != delim) s[t++] = ch;
+        if (!t) return fail = 1, *this;
+        if (delim == '\n' &amp;&amp; s[t - 1] == '\r') --t;
+        s[t] = '\0';
+        return *this;
+    &#125;
+    rstream&amp; seek() &#123;
+        vseek();
+        return *this;
+    &#125;
+    rstream&amp; read(auto... args) &#123; return (*this &gt;&gt; ... &gt;&gt; args); &#125;
+    template &lt;notstring_t T&gt; const T read() &#123;
+        T x;
+        return *this &gt;&gt; x, x;
+    &#125;
+    template &lt;string_t T&gt; char* read(int N) &#123;
+        char* s = new char[N]&#123;&#125;;
+        reads(s, N);
+        return s;
+    &#125;
+&#125;;
+class wstream : public noncopyable &#123;
+    int setw = 0, precision = 6, base = 10;
+    bool boolalpha = 0, showpos = 0, showpoint = 0, showbase = 0, kase = 0, unitbuf = 0;
+    char setfill = ' ';
+    long double eps = 1e-6, EPS = 1e6;
+    void update() &#123;
+        long double x = 0.1, y = 10;
+        int k = precision;
+        for (eps = EPS = 1; k; k &gt;&gt;= 1, x *= x, y *= y)
+            if (k &amp; 1) eps *= x, EPS *= y;
+    &#125;
+    char tochr(int x) &#123; return x + (x &lt; 10 ? '0' : kase ? 'A' - 10 : 'a' - 10); &#125;
+    void fill(int N) &#123;
+        setw = 0;
+        vfill(setfill, N);
+    &#125;
+
+  protected:
+    virtual void vflush() = 0;
+    virtual void vfill(char, int) = 0;
+    virtual void vput(char) = 0;
+    virtual void vputs(const char*, int = -1) = 0;
+
+  public:
+    wstream() = default;
+    wstream&amp; flush() &#123;
+        vflush();
+        return *this;
+    &#125;
+    wstream&amp; put(char ch) &#123;
+        vput(ch);
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(integer_t auto x) &#123;
+        static char buf[205], *end = buf + 200;
+        char* p = end;
+        bool t = x &lt; 0;
+        if (!x) *p-- = '0';
+        while (x) *p-- = tochr(t ? -(x % -base) : x % base), x /= base;
+        if (showbase &amp;&amp; base == 16) *p-- = kase ? 'X' : 'x', *p-- = '0';
+        else if (showbase &amp;&amp; base == 8) *p-- = '0';
+        if (t || showpos) *p-- = t ? '-' : '+';
+        fill(setw - (end - p));
+        vputs(p + 1, end - p);
+        if (unitbuf) flush();
+        return *this;
+    &#125;
+    template &lt;float_t T&gt; wstream&amp; operator&lt;&lt;(T x) &#123;
+        static char buf[1005], BUF[1005], *end = buf + 1000, *END = BUF + 1000;
+        char *p = end, *q = END, *d = END;
+        bool t = x &lt; 0;
+        if (t) x = -x;
+        T a = std::floor(x), b = std::round((x - a) * EPS);
+        if (b &gt;= EPS) ++a, b = 0;
+        if (a &lt; eps) *p-- = '0';
+        while (a &gt;= eps) *p-- = (int)std::fmod(a, 10) + '0', a = std::floor(a / 10);
+        while (b &gt;= eps) *q-- = (int)std::fmod(b, 10) + '0', b = std::floor(b / 10);
+        if (q != END || showpoint) *q-- = '.';
+        while (*d == '0' &amp;&amp; d != q &amp;&amp; !showpoint) --d;
+        if (showpos) *p-- = t ? '-' : '+';
+        fill(setw - (end - p) - (d - q));
+        vputs(p + 1, end - p);
+        vputs(q + 1, d - q);
+        if (unitbuf) flush();
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(char ch) &#123;
+        fill(setw - 1);
+        put(ch);
+        if (unitbuf) flush();
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(const char* s) &#123;
+        int N = strlen(s);
+        fill(setw - N);
+        vputs(s);
+        if (unitbuf) flush();
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(bool f) &#123;
+        if (boolalpha) &#123;
+            fill(setw - (f ? 4 : 5));
+            vputs(f ? &quot;true&quot; : &quot;false&quot;);
+        &#125; else &#123;
+            fill(setw - 1);
+            put(f ? '1' : '0');
+        &#125;
+        if (unitbuf) flush();
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(const void* p) &#123;
+        int b = base, f = showbase;
+        base = 16, showbase = 1;
+        *this &lt;&lt; (size_t)p;
+        base = b, showbase = f;
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(const symbol s) &#123;
+        if (s == endl) put('\n');
+        else if (s == ends) put(' ');
+        else if (s == syms::flush) flush();
+        else if (s == syms::boolalpha) boolalpha = 1;
+        else if (s == noboolalpha) boolalpha = 0;
+        else if (s == syms::showpos) showpos = 1;
+        else if (s == noshowpos) showpos = 0;
+        else if (s == syms::showpoint) showpoint = 1;
+        else if (s == noshowpoint) showpoint = 0;
+        else if (s == syms::showbase) showbase = 1;
+        else if (s == noshowbase) showbase = 0;
+        else if (s == syms::unitbuf) unitbuf = 1;
+        else if (s == nounitbuf) unitbuf = 0;
+        else if (s == lowercase) kase = 0;
+        else if (s == uppercase) kase = 1;
+        else if (s == bin) base = 2;
+        else if (s == oct) base = 8;
+        else if (s == dec) base = 10;
+        else if (s == hex) base = 16;
+        else if (s == reset) &#123;
+            boolalpha = showpos = showpoint = showbase = kase = unitbuf = 0;
+            setfill = ' ', precision = 6, eps = 1e-6, EPS = 1e6, base = 10;
+        &#125;
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(syms::setw sp) &#123;
+        setw = std::max(sp.data, 0);
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(const syms::setfill sp) &#123; return setfill = sp.data, *this; &#125;
+    wstream&amp; operator&lt;&lt;(const syms::setprecision sp) &#123;
+        precision = std::max(sp.data, 0);
+        update();
+        return *this;
+    &#125;
+    wstream&amp; operator&lt;&lt;(const syms::setbase sp) &#123;
+        base = sp.data;
+        if (base &lt; 2 || base &gt; 36) base = 10;
+        return *this;
+    &#125;
+    wstream&amp; write(auto... args) &#123; return (*this &lt;&lt; ... &lt;&lt; args); &#125;
+&#125;;
+&#125;  // namespace interface
+class rstream : public interface::rstream &#123;
+    char buf[SIZ], *p = buf, *q = buf;
+    char vget() &#123;
+        if (p != q) return *p++;
+        if (feof(file) || ferror(file)) &#123;
+            clearerr(file);
+            return EOF;
+        &#125;
+        if (p == q) &#123;
+            q = (p = buf) + fread(buf, 1, SIZ, file);
+            if (p == q) return EOF;
+        &#125;
+        return *p++;
+    &#125;
+    void vseek() &#123;
+        fseek(file, 0, 0);
+        p = q = buf;
+    &#125;
+
+  protected:
+    FILE* file = stdin;
+
+  public:
+    ~rstream() &#123; fclose(file); &#125;
+&#125;;
+class rfstream : public rstream &#123;
+  public:
+    rfstream(FILE* f) &#123; file = f; &#125;
+    rfstream(const char* dir) &#123; file = fopen(dir, &quot;r&quot;); &#125;
+&#125;;
+class wstream : public interface::wstream &#123;
+    char buf[SIZ], *p = buf;
+    void vflush() &#123;
+        fwrite(buf, p - buf, 1, file);
+        p = buf;
+    &#125;
+    void vfill(char ch, int N) &#123;
+        if (N &lt; 0) return;
+        int use = p - buf;
+        while (N + use &gt;= SIZ) &#123;
+            memset(buf + use, ch, SIZ - use);
+            p = buf + SIZ;
+            vflush();
+            N -= SIZ - use, use = 0;
+        &#125;
+        memset(buf + use, ch, N);
+        p = buf + N + use;
+    &#125;
+    void vput(char ch) &#123;
+        if (p - buf &gt;= SIZ) vflush();
+        *p++ = ch;
+    &#125;
+    void vputs(const char* s, int N = -1) &#123;
+        if (N &lt; 0) N = strlen(s);
+        int use = p - buf, _len = N;
+        while (N + use &gt;= SIZ) &#123;
+            memcpy(buf + use, s + _len - N, SIZ - use);
+            p = buf + SIZ;
+            vflush();
+            N -= SIZ - use, use = 0;
+        &#125;
+        memcpy(buf + use, s + _len - N, N);
+        p = buf + N + use;
+    &#125;
+
+  protected:
+    FILE* file = stdout;
+
+  public:
+    ~wstream() &#123; vflush(), fclose(file); &#125;
+&#125;;
+class wfstream : public wstream &#123;
+  public:
+    wfstream(FILE* f) &#123; file = f; &#125;
+    wfstream(const char* dir) &#123; file = fopen(dir, &quot;w&quot;); &#125;
+&#125;;
+class sstream : public interface::rstream, public interface::wstream &#123;
+    char *l = nullptr, *r = nullptr, *p = nullptr, *q = nullptr, *t;
+    void reserve() &#123;
+        int N = r - l;
+        if (!N) N = 2;
+        t = new char[(N &lt;&lt; 1) + 1]&#123;&#125;;
+        memcpy(t, l, N);
+        p = p - l + t, q = q - l + t;
+        delete[] l;
+        r = (l = t) + (N &lt;&lt; 1);
+    &#125;
+    char vget() &#123; return q == p ? EOF : *q++; &#125;
+    void vseek() &#123; q = l; &#125;
+    void vflush() &#123;&#125;
+    void vfill(char ch, int N) &#123;
+        if (N &lt; 0) return;
+        while (r - p &lt; N) reserve();
+        memset(p, ch, N), p += N;
+        eof = fail = 0;
+    &#125;
+    void vput(char ch) &#123;
+        if (p == r) reserve();
+        *p++ = ch;
+        eof = fail = 0;
+    &#125;
+    void vputs(const char* s, int N = -1) &#123;
+        if (N &lt; 0) N = strlen(s);
+        while (r - p &lt; N) reserve();
+        memcpy(p, s, N), p += N;
+        eof = fail = 0;
+    &#125;
+
+  public:
+    sstream() &#123;
+        delete[] l;
+        r = (p = q = l = new char[2]&#123;&#125;) + 1;
+    &#125;
+    sstream(const char* s) &#123; str(s); &#125;
+    ~sstream() &#123; delete[] l; &#125;
+    const char* str() &#123; return l; &#125;
+    void str(const char* s) &#123;
+        int N = strlen(s);
+        delete[] l;
+        r = p = (q = l = new char[N]) + N;
+        memcpy(l, s, N);
+        eof = fail = 0;
+    &#125;
+&#125;;
+rstream rs;
+wstream ws;
+&#125;;  // namespace fastio
+#undef SIZ
+</code></pre></div><div id="comment"><div id="giscus-container" class="giscus"></div></div></div><footer id="footer"><div class="footer-wrap"><div>&copy; 2022 - 2023 Argvchs の小窝 <span class="footer-icon"><i class="fa-solid fa-font-awesome fa-fw"></i> </span>&commat;Argvchs</div><div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp; <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div></div></footer></div></transition><div id="showimg"><img id="showimg-content"></div></div><script src="/js/functions.js"></script><script src="/js/particlex.js"></script><meta property="og:title" content="2022/08/11/cpp-fastio/"><script src="https://giscus-argvchs.netlify.app/client.js" data-repo="argvchs/giscus-comments" data-repo-id="R_kgDOIfnTTA" data-category="Announcements" data-category-id="DIC_kwDOIfnTTM4CSu2A" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="particlex" data-lang="zh-CN" crossorigin async></script></body></html>

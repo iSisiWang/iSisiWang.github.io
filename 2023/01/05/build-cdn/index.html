@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><title>搭建 CDN | Argvchs の小窝</title><meta name="author" content="Argvchs"><meta name="description" content=""><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><link rel="icon" href="https://static-argvchs.netlify.app/images/avatar.jpg"><script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script><script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css"><script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script><script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css"><link rel="stylesheet" href="/css/fonts.min.css"><link rel="stylesheet" href="/css/particlex.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Argvchs の小窝" type="application/atom+xml"><link rel="alternate" href="/rss2.xml" title="Argvchs の小窝" type="application/rss+xml"></head><body><div id="loading" style="height:100vh;width:100vw;left:0;top:0;position:fixed;display:flex;z-index:2147483647;background:#fff;transition:opacity .3s ease-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none"><div style="width:50vmin;height:50vmin;margin:auto;padding:50px;border-radius:50%;display:flex;border:solid 10px #a3ddfb"><div style="margin:auto;text-align:center"><h2>LOADING</h2><p>加载过慢请开启缓存，浏览器默认开启</p><img src="/images/loading.gif" style="height:50px;border-radius:0"></div></div></div><div id="layout"><transition name="into"><div id="main" v-show="showpage" style="display:-not-none"><nav id="menu"><div class="desktop-menu"><a class="title" href="/"><span>ARGVCHS の小窝</span> </a><a href="/"><i class="fa-solid fa-house fa-fw"></i> <span>&ensp;Home</span> </a><a href="/about"><i class="fa-solid fa-id-card fa-fw"></i> <span>&ensp;About</span> </a><a href="/archives"><i class="fa-solid fa-box-archive fa-fw"></i> <span>&ensp;Archives</span> </a><a href="/categories"><i class="fa-solid fa-bookmark fa-fw"></i> <span>&ensp;Categories</span> </a><a href="/tags"><i class="fa-solid fa-tags fa-fw"></i> <span>&ensp;Tags</span></a></div><div :class="&quot;phone-menu &quot; + menushow" id="phone-menu"><div class="curtain" @click="menushow = !menushow" v-show="menushow"></div><div class="title" @click="menushow = !menushow"><i class="fa-solid fa-bars fa-fw"></i> <span>&emsp;ARGVCHS の小窝</span></div><transition name="slide"><div class="items" v-show="menushow"><a href="/"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-house fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Home</div></div></a><a href="/about"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-id-card fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">About</div></div></a><a href="/archives"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-box-archive fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Archives</div></div></a><a href="/categories"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-bookmark fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Categories</div></div></a><a href="/tags"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-tags fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Tags</div></div></a></div></transition></div></nav><div class="article"><div><h1>搭建 CDN</h1></div><div class="info"><span class="date"><span class="icon"><i class="fa-solid fa-calendar fa-fw"></i> </span>2023/1/5 </span><span class="category"><a href="/categories/tutorial/"><span class="icon"><i class="fa-solid fa-bookmark fa-fw"></i> </span>教程 </a></span><span class="tags"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i> </span><span class="tag"><a href="/tags/cdn/" style="color:#00a596">CDN</a> </span><span class="tag"><a href="/tags/github/" style="color:#ffa2c4">GitHub</a> </span><span class="tag"><a href="/tags/netlify/" style="color:#00bcd4">Netlify</a></span></span></div><div class="content" v-pre><p>用 GitHub Actions + Netlify 搭建一个 CDN，和 <a target="_blank" rel="noopener" href="https://cdnjs.com">CDNJS</a> 自动同步</p><span id="more"></span><h2 id="0-前言">0. 前言</h2><p>最初是因为 <a target="_blank" rel="noopener" href="https://giscus-argvchs.netlify.app">Giscus</a> 评论的字体和博客的字体相同，但要加载两次，太慢了，就想到可以引用同一个字体文件，其中一个加载，另一个就可以用缓存，但是总会 CORS 出错，于是就单独建了一个 CDN</p><blockquote><p>然而这个 CDN 其实是存库文件的</p><p>如果不想存库文件可以把 <code>.github/workflows</code> 和 <code>lib</code> 删掉，但 <code>netlify.toml</code> 要保留</p><p><a target="_blank" rel="noopener" href="https://github.com/argvchs/static">这里</a>是我的 CDN，部署在 <a target="_blank" rel="noopener" href="https://static-argvchs.netlify.app"><code>static-argvchs.netlify.app</code></a></p></blockquote><h2 id="1-创建仓库">1. 创建仓库</h2><p>在 <a target="_blank" rel="noopener" href="https://github.com/new">GitHub</a> 创建一个仓库，存储你的 CDN</p><h2 id="2-创建文件">2. 创建文件</h2><p>创建一个文件夹作为 CDN 项目目录，在目录中创建一个文件 <code>.github/workflows/sync.yml</code></p><pre><code class="language-yaml">name: sync
+on:
+    schedule:
+        - cron: &quot;0 0 * * *&quot;
+    workflow_dispatch:
+env:
+    REPO: $&#123;&#123; github.repository &#125;&#125;
+    LIBS: $&#123;&#123; vars.LIBS &#125;&#125;
+    TOKEN: $&#123;&#123; secrets.TOKEN &#125;&#125;
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: clone
+              run: |
+                  git clone https://github.com/cdnjs/cdnjs.git --depth=1 --filter=blob:none --no-checkout
+                  git clone https://$TOKEN@github.com/$REPO.git $REPO --depth=1 --filter=blob:none --no-checkout
+            - name: checkout
+              run: |
+                  cd cdnjs
+                  git sparse-checkout init --cone
+                  for i in $LIBS
+                  do
+                  git sparse-checkout add ajax/libs/$i
+                  done
+                  git checkout
+                  cd ..
+                  cd $REPO
+                  git sparse-checkout init --cone
+                  git sparse-checkout set libs
+                  git checkout
+            - name: sync
+              run: |
+                  rm -rf $REPO/libs
+                  for i in $LIBS
+                  do
+                  mkdir -p $REPO/libs/$i
+                  cp -r cdnjs/ajax/libs/$i/* $REPO/libs/$i
+                  done
+            - name: commit
+              run: |
+                  cd $REPO
+                  git config user.name github-actions[bot]
+                  git config user.email github-actions[bot]@users.noreply.github.com
+                  git add .
+                  git commit --allow-empty -m &quot;sync&quot;
+            - name: push
+              run: |
+                  cd $REPO
+                  git push https://$TOKEN@github.com/$REPO.git
+</code></pre><p>这个是一天同步一次，如果想调整可以修改上面的 <code>cron</code> 参数</p><p>格式见: <a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#onschedule"><code>on.schedule</code></a></p><p><strong>不建议同步过于频繁，因为使用有<a target="_blank" rel="noopener" href="https://docs.github.com/zh/billing/managing-billing-for-github-actions/about-billing-for-github-actions">时间限制</a></strong></p><hr><p>然后创建一个文件 <code>netlify.toml</code>，用来设置 CORS</p><pre><code class="language-toml">[[headers]]
+    for = &quot;/*&quot;
+        [headers.values]
+        Access-Control-Allow-Origin = &quot;*&quot;
+</code></pre><h2 id="3-上传-GitHub">3. 上传 GitHub</h2><p>运行命令</p><pre><code class="language-bash">git init
+git add .
+git commit -m &quot;first commit&quot;
+git branch -M master
+git remote add origin https://github.com/&lt;user&gt;/&lt;repo&gt;.git
+git push -u origin master
+</code></pre><h2 id="4-生成-Access-token">4. 生成 Access token</h2><p>在<a target="_blank" rel="noopener" href="https://github.com/settings/tokens/new">这里</a>生成新的 Access token</p><p>Note 随便填，例如 <code>cdn</code><br>Expiration 选 No expiration<br>Select Scopes 勾选 <code>repo</code>，下面的会自动勾选</p><p>然后 Generate token 就可以了</p><p><strong>生成后会有一个复制按钮，存下来一会要用到</strong></p><h2 id="5-设置环境变量">5. 设置环境变量</h2><p>在仓库的 Settings/Security/Secrets and variables/Actions 里面</p><p><img src="https://static-argvchs.netlify.app/images/actions-secrets-and-variables.png" alt="actions-secrets-and-variables"></p><p>New repository secret 创建 <code>TOKEN</code>，值为刚才生成的 Access token</p><p>然后切换到 Variables，点击 New repository</p><p>New repository variable 创建 <code>LIBS</code>，值为你想要添加的库文件，用空格分割（<strong>不能用换行分割</strong>）<br>在 <a target="_blank" rel="noopener" href="https://cdnjs.com">CDNJS</a> 搜索</p><p><strong>然后就可以自动同步了！</strong></p><p>如果想手动进行同步，可以这样，Run workflow 即可</p><p><img src="https://static-argvchs.netlify.app/images/actions-run-workflow.png" alt="actions-run-workflow"></p><h2 id="6-部署到-Netlify">6. 部署到 Netlify</h2><p>在 <a target="_blank" rel="noopener" href="https://www.netlify.com">Netlify</a> 导入 CDN 仓库，部署并修改域名即可</p><p>在 CDNJS 上搜索的库的链接，把 <code>cdnjs.cloudflare.com/ajax</code> 替换为 <code>&lt;domain&gt;.netlify.app</code>，即可访问</p></div><div id="comment"><div id="giscus-container" class="giscus"></div></div></div><footer id="footer"><div class="footer-wrap"><div>&copy; 2022 - 2023 Argvchs の小窝 <span class="footer-icon"><i class="fa-solid fa-font-awesome fa-fw"></i> </span>&commat;Argvchs</div><div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp; <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div></div></footer></div></transition><div id="showimg"><img id="showimg-content"></div></div><script src="/js/functions.js"></script><script src="/js/particlex.js"></script><meta property="og:title" content="2023/01/05/build-cdn/"><script src="https://giscus-argvchs.netlify.app/client.js" data-repo="argvchs/giscus-comments" data-repo-id="R_kgDOIfnTTA" data-category="Announcements" data-category-id="DIC_kwDOIfnTTM4CSu2A" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="particlex" data-lang="zh-CN" crossorigin async></script></body></html>
