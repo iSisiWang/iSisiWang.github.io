@@ -1,3 +1,6 @@
+https://isisi.eu.org/about/
+https://isisi.eu.org/categories/
+https://isisi.eu.org/tags/
 https://isisi.eu.org/2023/01/05/build-cdn/
 https://isisi.eu.org/2022/07/04/build-cors-anywhere/
 https://isisi.eu.org/2022/08/11/cpp-fastio/
@@ -21,9 +24,6 @@ https://isisi.eu.org/2022/11/18/image-hosting/
 https://isisi.eu.org/2022/07/21/mingw-w64-install/
 https://isisi.eu.org/2022/09/10/msys2-install-clang/
 https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/
-https://isisi.eu.org/about/
-https://isisi.eu.org/categories/
-https://isisi.eu.org/tags/
 https://isisi.eu.org/
 https://isisi.eu.org/tags/cdn/
 https://isisi.eu.org/tags/github/
