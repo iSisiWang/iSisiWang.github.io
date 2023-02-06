@@ -6,7 +6,7 @@
   <link href="https://isisi.eu.org/atom.xml" rel="self"/>
   
   <link href="https://isisi.eu.org/"/>
-  <updated>2023-02-06T01:08:57.682Z</updated>
+  <updated>2023-02-06T01:23:58.756Z</updated>
   <id>https://isisi.eu.org/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://isisi.eu.org/2023/01/05/disable-yearly-monthly-archive/"/>
     <id>https://isisi.eu.org/2023/01/05/disable-yearly-monthly-archive/</id>
     <published>2023-01-05T17:53:55.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;Hexo 会自动生成年度月度归档，可是 ParticleX 主题没有这个功能 &lt;s&gt;我太懒了&lt;/s&gt;&lt;/p&gt;
@@ -41,7 +41,7 @@
     <link href="https://isisi.eu.org/2023/01/05/build-cdn/"/>
     <id>https://isisi.eu.org/2023/01/05/build-cdn/</id>
     <published>2023-01-05T15:31:20.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;用 GitHub Actions + Netlify 搭建一个 CDN，和 &lt;a href=&quot;https://cdnjs.com&quot;&gt;CDNJS&lt;/a&gt; 自动同步&lt;/p&gt;</summary>
@@ -64,7 +64,7 @@
     <link href="https://isisi.eu.org/2022/12/13/hexo-babel/"/>
     <id>https://isisi.eu.org/2022/12/13/hexo-babel/</id>
     <published>2022-12-13T15:51:22.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/argvchs/hexo-babel&quot;&gt;Hexo-Babel&lt;/a&gt; 插件，使用 Babel 编译转换 JS 文件&lt;/p&gt;</summary>
@@ -87,7 +87,7 @@
     <link href="https://isisi.eu.org/2022/12/12/css-compatibility/"/>
     <id>https://isisi.eu.org/2022/12/12/css-compatibility/</id>
     <published>2022-12-12T14:22:40.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;CSS 兼容性太麻烦了，所以要自动处理&lt;/p&gt;</summary>
@@ -108,7 +108,7 @@
     <link href="https://isisi.eu.org/2022/12/08/hexo-helper-crypto/"/>
     <id>https://isisi.eu.org/2022/12/08/hexo-helper-crypto/</id>
     <published>2022-12-08T16:26:33.000Z</published>
-    <updated>2023-02-06T01:08:57.686Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">[Hexo-Helper-Crypto](https://github.com/argvchs/hexo-helper-crypto) 插件，用于在模板文件内加/解密数据，使用 [Crypto-js](https://github.com/brix/crypto-js)
@@ -134,7 +134,7 @@
     <link href="https://isisi.eu.org/2022/12/07/fix-github/"/>
     <id>https://isisi.eu.org/2022/12/07/fix-github/</id>
     <published>2022-12-07T09:33:01.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;这几天 GitHub 几乎都是无法打开，改 Hosts 也不行，只能用龟速的 Tor&lt;/p&gt;</summary>
@@ -153,7 +153,7 @@
     <link href="https://isisi.eu.org/2022/12/06/giscus/"/>
     <id>https://isisi.eu.org/2022/12/06/giscus/</id>
     <published>2022-12-06T18:35:05.000Z</published>
-    <updated>2023-02-06T01:08:57.682Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;Giscus 终于配置好了！&lt;/strong&gt;&lt;br&gt;
@@ -175,7 +175,7 @@
     <link href="https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/"/>
     <id>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/</id>
     <published>2022-12-04T23:27:21.000Z</published>
-    <updated>2023-02-06T01:08:57.686Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://test.scenexe.io&quot;&gt;Scenexe.io Test Server&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
@@ -199,7 +199,7 @@
     <link href="https://isisi.eu.org/2022/11/18/image-hosting/"/>
     <id>https://isisi.eu.org/2022/11/18/image-hosting/</id>
     <published>2022-11-18T16:06:43.000Z</published>
-    <updated>2023-02-06T01:08:57.686Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;之前图床用的是 &lt;a href=&quot;https://www.imgtp.com&quot;&gt;ImgTP&lt;/a&gt;，因为能传 SVG，当初就选了这个，但现在总是间歇性的打不开了&lt;/p&gt;
@@ -221,7 +221,7 @@
     <link href="https://isisi.eu.org/2022/09/10/msys2-install-clang/"/>
     <id>https://isisi.eu.org/2022/09/10/msys2-install-clang/</id>
     <published>2022-09-10T12:22:17.000Z</published>
-    <updated>2023-02-06T01:08:57.686Z</updated>
+    <updated>2023-02-06T01:23:58.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;使用 MSYS2 安装 Clang 的教程&lt;/p&gt;</summary>
