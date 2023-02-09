@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/</loc>
+    
+    <lastmod>2023-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isisi.eu.org/about/</loc>
+    
+    <lastmod>2023-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isisi.eu.org/categories/</loc>
+    
+    <lastmod>2023-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://isisi.eu.org/tags/</loc>
+    
+    <lastmod>2023-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://isisi.eu.org/2023/01/05/build-cdn/</loc>
     
     <lastmod>2023-02-09</lastmod>
@@ -192,42 +228,6 @@
   
   <url>
     <loc>https://isisi.eu.org/2022/09/10/msys2-install-clang/</loc>
-    
-    <lastmod>2023-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isisi.eu.org/2022/12/04/scenexeio-tank-codes-arrasio/</loc>
-    
-    <lastmod>2023-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isisi.eu.org/about/</loc>
-    
-    <lastmod>2023-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isisi.eu.org/categories/</loc>
-    
-    <lastmod>2023-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://isisi.eu.org/tags/</loc>
     
     <lastmod>2023-02-09</lastmod>
     
